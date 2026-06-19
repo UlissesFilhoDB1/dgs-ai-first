@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Board de Tracking de Specs SDD — NovaTech Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1e2530; --bg:#f6f5f2; --card:#ffffff; --line:#e2ddd2;
+    --draft:#6b6a64; --draft-bg:#eceae2;
+    --review:#9a6206; --review-bg:#faeeda;
+    --approved:#0f6e56; --approved-bg:#e1f5ee;
+    --impl:#155a9c; --impl-bg:#e6f1fb;
+    --valid:#3b6d11; --valid-bg:#eaf3de;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);padding:28px;}
+  h1{font-size:18pt;font-weight:700;margin-bottom:3px;}
+  .sub{font-size:9.5pt;color:#76746c;margin-bottom:18px;}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:20px;font-size:9pt;color:#56544d;}
+  .legend b{font-weight:600;}
+  .board{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  .col-head{font-size:9.5pt;font-weight:600;text-align:center;padding:8px;border-radius:8px;margin-bottom:10px;}
+  .h-draft{background:var(--draft-bg);color:var(--draft);}
+  .h-review{background:var(--review-bg);color:var(--review);}
+  .h-approved{background:var(--approved-bg);color:var(--approved);}
+  .h-impl{background:var(--impl-bg);color:var(--impl);}
+  .h-valid{background:var(--valid-bg);color:var(--valid);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:9px;}
+  .card .mod{font-size:10pt;font-weight:600;margin-bottom:7px;}
+  .tags{display:flex;gap:5px;flex-wrap:wrap;}
+  .tag{font-size:8.5pt;font-weight:600;padding:2px 7px;border-radius:6px;}
+  .t-draft{background:var(--draft-bg);color:var(--draft);}
+  .t-review{background:var(--review-bg);color:var(--review);}
+  .t-approved{background:var(--approved-bg);color:var(--approved);}
+  .t-impl{background:var(--impl-bg);color:var(--impl);}
+  .note{margin-top:20px;font-size:8.5pt;color:#84827a;line-height:1.6;max-width:900px;}
+  .empty{font-size:8.5pt;color:#b3b0a6;text-align:center;padding:14px 4px;border:1px dashed var(--line);border-radius:10px;}
+</style>
+</head>
+<body>
+  <h1>Board de Tracking de Specs (SDD)</h1>
+  <div class="sub">NovaTech Assistant · Fase de Estruturação · estado inicial · gerado via Claude Cowork</div>
+
+  <div class="legend">
+    <span><b>R</b> = requirements.md (Product Specialist)</span>
+    <span><b>P</b> = plan.md (Tech Lead)</span>
+    <span><b>T</b> = tasks.md (Dev + Copilot)</span>
+    <span>Etiqueta colorida = estágio do artefato</span>
+  </div>
+
+  <div class="board">
+    <!-- RASCUNHO -->
+    <div>
+      <div class="col-head h-draft">Rascunho</div>
+      <div class="card"><div class="mod">feedback-api</div><div class="tags"><span class="tag t-draft">R</span></div></div>
+      <div class="card"><div class="mod">teams-bot</div><div class="tags"><span class="tag t-draft">R</span></div></div>
+      <div class="card"><div class="mod">painel-web</div><div class="tags"><span class="tag t-draft">R</span></div></div>
+    </div>
+    <!-- EM REVISÃO -->
+    <div>
+      <div class="col-head h-review">Em revisão</div>
+      <div class="card"><div class="mod">query-endpoint</div><div class="tags"><span class="tag t-review">P</span></div></div>
+    </div>
+    <!-- APROVADA -->
+    <div>
+      <div class="col-head h-approved">Aprovada</div>
+      <div class="card"><div class="mod">query-endpoint</div><div class="tags"><span class="tag t-approved">R</span></div></div>
+    </div>
+    <!-- EM IMPLEMENTAÇÃO -->
+    <div>
+      <div class="col-head h-impl">Em implementação</div>
+      <div class="card"><div class="mod">pipeline-ingestao</div><div class="tags"><span class="tag t-approved">R</span><span class="tag t-approved">P</span><span class="tag t-impl">T</span></div></div>
+    </div>
+    <!-- VALIDADA -->
+    <div>
+      <div class="col-head h-valid">Validada</div>
+      <div class="empty">—</div>
+    </div>
+  </div>
+
+  <p class="note">
+    <b>Como ler:</b> cada cartão é um módulo; as etiquetas R/P/T mostram quais artefatos SDD já existem e em que estágio. Um módulo aparece na coluna do seu artefato mais avançado no fluxo. Exemplo: <i>query-endpoint</i> tem requirements já aprovado (coluna Aprovada) e o plan em revisão (coluna Em revisão) — o avanço de cada artefato é acompanhado separadamente. <i>pipeline-ingestao</i> já tem R e P aprovados e tasks geradas, por isso está em implementação. Os 5 módulos do projeto são: pipeline-ingestao, query-endpoint, feedback-api, teams-bot e painel-web.
+  </p>
+</body>
+</html>
