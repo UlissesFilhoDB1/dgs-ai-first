@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Relatório Semanal — NovaTech Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1e2530; --bg:#f6f5f2; --card:#fff; --line:#e2ddd2; --soft:#efece5;
+    --green:#0f6e56; --green-bg:#e3f3ec; --amber:#9a6206; --red:#a32d2d; --blue:#185fa5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);padding:28px;}
+  .sheet{max-width:840px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 30px;}
+  .top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:9px;margin-bottom:16px;}
+  .top .t{font-size:14pt;font-weight:600;}
+  .top .d{font-size:9pt;color:#76746c;}
+  .verdict{background:var(--green-bg);border-radius:8px;padding:11px 15px;margin-bottom:18px;font-size:10pt;line-height:1.5;}
+  .verdict b{font-weight:600;}
+  .ok{color:var(--green);font-weight:600;}
+  .sec-lbl{font-size:9pt;color:#76746c;margin-bottom:8px;}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:20px;}
+  .kpi{background:var(--soft);border-radius:8px;padding:12px;}
+  .kpi .l{font-size:8.5pt;color:#76746c;}
+  .kpi .v{font-size:18pt;font-weight:600;margin:1px 0;}
+  .kpi .tr{font-size:8.5pt;}
+  .up{color:var(--green);} .flat{color:var(--amber);} .down{color:var(--red);}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .h{font-size:10pt;font-weight:600;margin-bottom:8px;}
+  table{width:100%;border-collapse:collapse;font-size:9pt;}
+  td{padding:5px 0;}
+  tr{border-bottom:0.5px solid var(--line);}
+  tr:last-child{border-bottom:none;}
+  .muted{color:#76746c;}
+  .right{text-align:right;}
+  .action{display:flex;gap:8px;margin-bottom:9px;font-size:9pt;line-height:1.45;}
+  .action .ic{color:var(--blue);flex-shrink:0;}
+  .foot{margin-top:18px;border-top:0.5px solid var(--line);padding-top:9px;font-size:8pt;color:#9a988f;}
+  .arrow{font-weight:700;}
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="top">
+      <div class="t">Assistente NovaTech — Relatório Semanal</div>
+      <div class="d">Semana 14–20/jun · piloto (5 atendentes)</div>
+    </div>
+
+    <div class="verdict">
+      <b>Veredito da semana:</b> <span class="ok">Melhorando.</span> Feedback negativo caiu de 14% para 9%; acerto no golden dataset subiu para 93%. Ponto de atenção: perguntas sem resposta ainda em 18% (gaps de conteúdo a tratar).
+    </div>
+
+    <div class="sec-lbl">KPIs principais (vs. semana anterior)</div>
+    <div class="kpis">
+      <div class="kpi"><div class="l">Feedback negativo</div><div class="v">9%</div><div class="tr up">▼ −5 pp · melhor</div></div>
+      <div class="kpi"><div class="l">Acerto (golden set)</div><div class="v">93%</div><div class="tr up">▲ +5 pp · melhor</div></div>
+      <div class="kpi"><div class="l">Perguntas sem resposta</div><div class="v">18%</div><div class="tr flat">▶ −1 pp · estável</div></div>
+      <div class="kpi"><div class="l">Tempo médio consulta</div><div class="v">2,4 min</div><div class="tr up">▼ −0,6 · melhor</div></div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <div class="h">Uso &amp; adoção</div>
+        <table>
+          <tr><td class="muted">Perguntas/dia (média)</td><td class="right">142</td></tr>
+          <tr><td class="muted">Atendentes ativos</td><td class="right">5 / 5</td></tr>
+          <tr><td class="muted">Escalações ao supervisor</td><td class="right">11%</td></tr>
+          <tr><td class="muted">Tema mais consultado</td><td class="right">Prazos (34%)</td></tr>
+        </table>
+        <div class="h" style="margin-top:16px;">Saúde técnica</div>
+        <table>
+          <tr><td class="muted">Latência p95</td><td class="right">4,1s</td></tr>
+          <tr><td class="muted">Disponibilidade</td><td class="right">99,6%</td></tr>
+          <tr><td class="muted">Taxa de erro técnico</td><td class="right">0,8%</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="h">Ações planejadas (próxima semana)</div>
+        <div class="action"><span class="ic">＋</span><div>Formalizar política de <b>carga danificada</b> (hoje só no FAQ informal) — Compliance + PS</div></div>
+        <div class="action"><span class="ic">↻</span><div>Reindexar tabelas de frete para reduzir perguntas sem resposta — Tech Lead</div></div>
+        <div class="action"><span class="ic">✎</span><div>Ajuste de prompt para reforçar abstenção em tema sem cobertura — PS (com regressão)</div></div>
+        <div class="action"><span class="ic">☑</span><div>Resolver 4 das 12 contradições pendentes — Compliance NovaTech</div></div>
+        <div class="h" style="margin-top:16px;">Alertas disparados</div>
+        <div style="font-size:9pt; line-height:1.5; color:#76746c;">
+          1 alerta AL-2 (perguntas sem resposta &gt; 20% em 16/jun) — investigado, virou a ação de reindexação acima. Nenhum alerta crítico.
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      Template gerado via Claude Cowork · valores ilustrativos · tendência vs. semana anterior · ▲/▼ verde = melhora, ▶ âmbar = estável, ▲/▼ vermelho = piora. As 3 métricas-tendência (feedback negativo, acerto no golden set, perguntas sem resposta) respondem à pergunta da diretoria: o assistente está melhorando ou piorando?
+    </div>
+  </div>
+</body>
+</html>
