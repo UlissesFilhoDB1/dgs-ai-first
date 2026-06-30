@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard de Readiness do Go-Live — NovaTech Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1e2530; --bg:#f6f5f2; --card:#fff; --line:#e2ddd2;
+    --green:#0f6e56; --green-bg:#e1f5ee;
+    --amber:#9a6206; --amber-bg:#faeeda;
+    --red:#a32d2d; --red-bg:#fcebeb;
+    --layer:#185fa5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);padding:28px;}
+  h1{font-size:18pt;font-weight:700;}
+  .sub{font-size:9.5pt;color:#76746c;margin-bottom:18px;}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .kpi .lbl{font-size:9pt;color:#76746c;}
+  .kpi .val{font-size:21pt;font-weight:700;}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:14px;font-size:9pt;color:#56544d;}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;}
+  .right{margin-left:auto;color:#84827a;}
+  table{width:100%;border-collapse:collapse;font-size:10pt;}
+  th{text-align:left;color:#76746c;font-size:8.5pt;font-weight:600;padding:6px 8px;}
+  td{padding:8px;border-top:1px solid var(--line);vertical-align:top;}
+  .layer td{border-top:none;padding-top:16px;padding-bottom:2px;font-weight:600;color:var(--layer);font-size:10.5pt;}
+  .st{width:30px;text-align:center;font-size:12pt;}
+  .tag{font-size:8pt;font-weight:600;padding:1px 6px;border-radius:5px;}
+  .b{background:#eceae2;color:#444441;}
+  .d{background:#e6f1fb;color:#185fa5;}
+  .verdict{margin-top:22px;background:var(--red-bg);border:1px solid #f0c0c0;border-radius:10px;padding:14px 16px;font-size:9.5pt;line-height:1.6;color:#5a1e1e;}
+  .verdict b{color:#7a1f1f;}
+</style>
+</head>
+<body>
+  <h1>Dashboard de Readiness do Go-Live</h1>
+  <div class="sub">NovaTech Assistant · piloto com 5 atendentes · demo da diretoria em 14 dias · gerado via Claude Cowork · 19/jun/2026</div>
+
+  <div class="cards">
+    <div class="kpi"><div class="lbl">Critérios bloqueantes</div><div class="val">16</div></div>
+    <div class="kpi"><div class="lbl">Prontos</div><div class="val" style="color:var(--green)">6</div></div>
+    <div class="kpi"><div class="lbl">Em risco</div><div class="val" style="color:var(--amber)">6</div></div>
+    <div class="kpi"><div class="lbl">Não prontos</div><div class="val" style="color:var(--red)">4</div></div>
+  </div>
+
+  <div class="legend">
+    <span><span class="dot" style="background:#1d9e75"></span>Pronto</span>
+    <span><span class="dot" style="background:#ef9f27"></span>Em andamento / risco</span>
+    <span><span class="dot" style="background:#e24b4a"></span>Não iniciado / falhando</span>
+    <span class="right">B = bloqueante · D = desejável</span>
+  </div>
+
+  <table>
+    <thead><tr><th>St</th><th>Critério</th><th>Tipo</th><th>Responsável</th><th>Data-alvo</th></tr></thead>
+    <tbody>
+      <tr class="layer"><td colspan="5">1 · Tool Orchestration</td></tr>
+      <tr><td class="st">🟢</td><td>Ingestão dos 847 docs + reindex sob demanda</td><td><span class="tag b">B</span></td><td>Dev Sênior</td><td>Pronto</td></tr>
+      <tr><td class="st">🔴</td><td>12 contradições resolvidas pelo Compliance ou isoladas do índice</td><td><span class="tag b">B</span></td><td>Compliance NovaTech</td><td>26/jun</td></tr>
+      <tr><td class="st">🟡</td><td>Fallback gracioso de orquestração (serviço indisponível)</td><td><span class="tag d">D</span></td><td>Dev Pleno</td><td>pós-go-live</td></tr>
+
+      <tr class="layer"><td colspan="5">2 · Verification Loops</td></tr>
+      <tr><td class="st">🟡</td><td>Structured output validado por Zod (response-validator.ts)</td><td><span class="tag b">B</span></td><td>Dev Sênior</td><td>25/jun</td></tr>
+      <tr><td class="st">🟡</td><td>Verificação de fonte contra lista de docs válidos</td><td><span class="tag b">B</span></td><td>Tech Lead</td><td>25/jun</td></tr>
+      <tr><td class="st">🔴</td><td>Golden dataset ≤ 5% de erro (hoje: 12%)</td><td><span class="tag b">B</span></td><td>QA</td><td>30/jun</td></tr>
+
+      <tr class="layer"><td colspan="5">3 · Context &amp; Memory</td></tr>
+      <tr><td class="st">🟢</td><td>Context budget da ADR-0002 respeitado</td><td><span class="tag b">B</span></td><td>Tech Lead</td><td>Pronto</td></tr>
+      <tr><td class="st">🟡</td><td>Truncamento de histórico (3 turnos) sem quebra</td><td><span class="tag b">B</span></td><td>Dev Pleno</td><td>24/jun</td></tr>
+
+      <tr class="layer"><td colspan="5">4 · Guardrails + HITL</td></tr>
+      <tr><td class="st">🟡</td><td>Guardrail 1: rejeita resposta sem source_document</td><td><span class="tag b">B</span></td><td>Dev Sênior</td><td>25/jun</td></tr>
+      <tr><td class="st">🔴</td><td>Guardrail 2: bloqueia inversão "carga perigosa + devolução"</td><td><span class="tag b">B</span></td><td>Dev Sênior</td><td>27/jun</td></tr>
+      <tr><td class="st">🟡</td><td>Guardrail 3: HITL em temas sensíveis sem confiança suficiente</td><td><span class="tag b">B</span></td><td>Supervisor</td><td>27/jun</td></tr>
+
+      <tr class="layer"><td colspan="5">5 · Observability</td></tr>
+      <tr><td class="st">🟢</td><td>Dashboard com status por camada e trilha de incidentes</td><td><span class="tag b">B</span></td><td>Delivery Manager</td><td>Pronto</td></tr>
+      <tr><td class="st">🟡</td><td>Alertas por threshold de feedback e erro operacional</td><td><span class="tag d">D</span></td><td>QA</td><td>pós-go-live</td></tr>
+    </tbody>
+  </table>
+
+  <div class="verdict">
+    <b>Veredito atual: go-live NÃO autorizado</b> enquanto houver bloqueante em vermelho. Caminho crítico para a demo: (1) resolver as 12 contradições — dependência do Compliance da NovaTech, 26/jun; (2) baixar o golden dataset de 12% para ≤ 5% — QA, 30/jun; (3) guardrail de carga perigosa + ponto de HITL operando, 27–30/jun. Nenhum item desejável trava a data: se o prazo apertar, corta-se escopo desejável, nunca bloqueante.
+  </div>
+</body>
+</html>
